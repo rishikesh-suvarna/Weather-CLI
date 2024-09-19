@@ -6,7 +6,7 @@ This is a CLI tool written in go to fetch weather forecast details from [weather
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/rishikeshsuvarna/weather-cli.git
+    git clone https://github.com/rishikesh-suvarna/weather-cli.git
     cd weather-cli
     ```
 

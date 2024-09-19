@@ -1,4 +1,4 @@
-module github.com/rishikeshsuvarna/weather-cli
+module github.com/rishikesh-suvarna/weather-cli
 
 go 1.22.5
 
