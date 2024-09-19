@@ -1,5 +1,4 @@
 # GO Weather CLI
-
 This is a CLI tool written in go to fetch weather forecast details from [weatherapi.com](https://www.weatherapi.com/).
 
 ## Setup
@@ -20,44 +19,63 @@ This is a CLI tool written in go to fetch weather forecast details from [weather
     go mod tidy
     ```
 
+## Build
+
+To build the application, run the following command:
+```sh
+go build -o ./build/weather-cli
+```
+
+Once the build is created, you can move it to your OS binary directory to run it directly from the terminal.
+
+For macOS/Linux:
+```sh
+sudo mv ./build/weather-cli /usr/local/bin/weather-cli
+```
+
+For Windows:
+```sh
+move .\build\weather-cli.exe C:\Windows\System32\weather-cli.exe
+```
+
 ## Usage
 
 To use this application, run the following command with one of the supported arguments: US Zipcode, UK Postcode, Canada Postalcode, IP address, Latitude/Longitude (decimal degree), or city name.
 
 ```sh
-go run main.go <argument>
+weather-cli <argument>
 ```
 
 ### Examples
 
 - By US Zipcode:
     ```sh
-    go run main.go 90210
+    weather-cli 90210
     ```
 
 - By UK Postcode:
     ```sh
-    go run main.go SW1A1AA
+    weather-cli SW1A1AA
     ```
 
 - By Canada Postalcode:
     ```sh
-    go run main.go M5V3L9
+    weather-cli M5V3L9
     ```
 
 - By IP address:
     ```sh
-    go run main.go 8.8.8.8
+    weather-cli 8.8.8.8
     ```
 
 - By Latitude/Longitude:
     ```sh
-    go run main.go "40.7128,-74.0060"
+    weather-cli "40.7128,-74.0060"
     ```
 
 - By City Name:
     ```sh
-    go run main.go "New York"
+    weather-cli "New York"
     ```
 
 ## License
