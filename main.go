@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/fatih/color"
 	"github.com/joho/godotenv"
 )
 
@@ -49,7 +50,13 @@ func main() {
 		panic("WEATHER_API_KEY is not set")
 	}
 
-	res, err := http.Get("https://api.weatherapi.com/v1/forecast.json?q=London&days=1&key=" + apiKey)
+	q := "London"
+
+	if len(os.Args) > 1 {
+		q = os.Args[1]
+	}
+
+	res, err := http.Get("https://api.weatherapi.com/v1/forecast.json?q=" + q + "&days=1&key=" + apiKey)
 	if err != nil {
 		panic(err)
 	}
@@ -73,7 +80,7 @@ func main() {
 
 	location, current, hours := weather.Location, weather.Current, weather.Forecast.Forecastday[0].Hour
 
-	fmt.Printf("Location: %s, %s, %.0fC %s\n", location.Name, location.Country, current.TempC, current.Condition.Text)
+	fmt.Printf("Location: %s, %s, %.0fC %s\n\n", location.Name, location.Country, current.TempC, current.Condition.Text)
 
 	for _, hour := range hours {
 
@@ -83,13 +90,17 @@ func main() {
 			continue
 		}
 
-		message := fmt.Sprintf("Time: %s, %.0fC %s, %.0f%% chance of rain",
-			date.Format("15:04"),
+		message := fmt.Sprintf("Forecase for: %s, %.0fC %s, %.0f%% chance of rain",
+			date.Format("02 January 2006, 15:04"),
 			hour.TempC,
 			hour.Condition.Text,
 			hour.ChanceOfRain)
 
-		fmt.Println(message)
+		if hour.ChanceOfRain > 0 {
+			color.Magenta(message)
+		} else {
+			fmt.Println(message)
+		}
 	}
 
 }
